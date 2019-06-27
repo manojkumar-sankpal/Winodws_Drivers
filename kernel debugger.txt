@@ -1,0 +1,35 @@
+
+//////////////////////////////////////////////////////////////////
+
+How to connect kernel windbg from host machine to taget machine(Virtual box)
+
+1. Using named Pipe 
+ 
+	Tested on : Windows 8.1
+
+	Target Machine:
+	
+	a. Set OS debugging mode ON 
+		1. Open administrative command prompt
+		2. Give following command :
+			bcdedit /debug on
+			bcdedit /dbgsettings serial debugport:n baudrate:115200
+				where n is no of com port available on virtual machine
+				
+	b. virtual box settings
+		1. Select machine in virtual box goto setting -> serial port -> enable the serial port check box-> 
+			choose port mode as "Host Pipe" -> In Path/address give Pipe name like (\\.\pipe\test).
+			Remember this Pipe name that need to provide in WinDbg on host machine.
+	
+	Host Machine :
+	1. Start kernel debugger
+	2. Goto File Menu
+	3. Select kernel debugger
+	4. Select COM tab
+	5. Make sure 'Pipe' chekbox checked. Provide pipe name given in virual box in "Port:" like in our case "\\.\pipe\test"
+	
+	c. start the operating system.
+	
+
+//////////////////////////////////////////////////////////////////
+
