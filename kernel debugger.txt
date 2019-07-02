@@ -3,7 +3,7 @@
 
 How to connect kernel windbg from host machine to taget machine(Virtual box)
 
-1. Using named Pipe 
+1. Using serial port (named Pipe )
  
 	Tested on : Windows 8.1
 
@@ -14,8 +14,8 @@ How to connect kernel windbg from host machine to taget machine(Virtual box)
 		2. Give following command :
 			bcdedit /debug on
 			bcdedit /dbgsettings serial debugport:n baudrate:115200
-				where n is no of com port available on virtual machine
-				
+				where n is no of com port that used to connect on virtual machine
+		
 	b. virtual box settings
 		1. Select machine in virtual box goto setting -> serial port -> enable the serial port check box-> 
 			choose port mode as "Host Pipe" -> In Path/address give Pipe name like (\\.\pipe\test).
@@ -31,5 +31,14 @@ How to connect kernel windbg from host machine to taget machine(Virtual box)
 	c. start the operating system.
 	
 
-//////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
+Debug Print Filter registry setting:
+
+This registry setting required vista onwards.
+
+create following registry key : 
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Debug Print Filter]
+"DEFAULT"=dword:00000008
+
+///////////////////////////////////////////////////////////////////////////////////
